@@ -1,0 +1,12 @@
+node_modules/
+
+.DS_STORE
+
+# environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/

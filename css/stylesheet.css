@@ -1,7 +1,13 @@
 h1 {
   color: green;
+  margin: 2%;
 }
 
 body {
   border: 2px solid;
+  margin: 2%;
+}
+
+.nav-item {
+  text-align: right;
 }
