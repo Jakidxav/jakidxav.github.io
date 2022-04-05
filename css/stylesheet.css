@@ -1,13 +1,24 @@
 h1 {
+  border: 2px solid green;
   color: green;
-  margin: 2%;
+  margin-top: 2%;
 }
 
 body {
   border: 2px solid;
-  margin: 2%;
 }
 
-.nav-item {
-  text-align: right;
+#first-tab-h1 {
+  border: 2px solid red;
+  color: red;
+}
+
+#second-tab-h1 {
+  border: 2px solid purple;
+  color: purple;
+}
+
+#third-tab-h1 {
+  border: 2px solid blue;
+  color: blue;
 }
