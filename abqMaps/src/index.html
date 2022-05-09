@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>abqMaps</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- stylesheets -->
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="docs/images/favicon.ico"
+    />
+    <link rel="stylesheet" href="../css/leaflet_1.7.1.css" />
+    <link rel="stylesheet" href="../css/bootstrap_4.6.1.min.css" />
+    <link rel="stylesheet" href="../css/stylesheet.css" />
+
+    <!-- scripts -->
+    <script src="../scripts/jquery_3.5.1.slim.min.js"></script>
+    <script src="../scripts/popper_1.16.1.min.js"></script>
+    <script src="../scripts/bootstrap_4.6.1.bundle.min.js"></script>
+    <script src="../scripts/run_prettify.js"></script>
+  </head>
+
+  <body>
+    <!-- example from https://getbootstrap.com/docs/4.6/components/navbar/ -->
+    <nav class="container navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link" href="map_overlay.html">Overlay Map</a>
+            <a class="nav-link" href="map_slider.html">Map Slider</a>
+            <a class="nav-link" href="map_split.html">Split Map</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div id="page_title" class="container">
+      <div class="row">
+        <h1 class="col-sm-12">abqMaps</h1>
+        <p id="subtitle" class="col-sm-12">
+        Interactive Web Maps and Map Maker for Albuquerque, New Mexico
+        </p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div id="about" class="col-sm-12">
+          <h3 class="col-sm-12">About</h3>
+          <p class="col-sm-12">
+            Welcome to our site! Here, you will find several open-source implementations of 
+            maps that you can find in GIS software for the Albuqerque, New Mexico area. 
+            Our goal for making this site is to highlight how land-use decisions have affected 
+            and continue to affect people and the environment.
+
+            This site provides various mappings tools that enable users to visualize data,
+             produce maps, explore the history of development in Albuquerque, and answer some social,
+              economic, and environmental questions through a geographic lens.
+          </p>
+          <p class="col-sm-12">
+            The maps can be used interactively on this site, where you can create 
+            maps that you are interested in and then download them as PNG files.
+            However, we also have included the source code of the maps so that users 
+            can customize their maps to their specific needs and interests. In this way,
+            each map can be thought of as a template or starting point (i.e., we've figured
+            out how to make the maps work using open-source code, so users can simply add the
+            data that they are interested in).
+          </p>
+          
+          <h3 class="col-sm-12">Team members</h3>
+          <p class="col-sm-12"><a href="https://github.com/liandrews" target=""_blank>Luke Andrews</a></p>
+          <p class="col-sm-12"><a href="" target="https://github.com/Jakidxav"_blank>Jakidxav</a></p>
+
+          <h3 class="col-sm-12">Project advisor</h3>
+          <p class="col-sm-12">Dr <a href="www.lipingyang.org" target="_blank">Liping Yang</a> (course instructor of GEOG 485L/585L Internet
+            Mapping)</p>
+
+          <h3 class="col-sm-12">Acknowledgements</h3>
+          <h4 class="col-sm-12">Data sources</h4>
+          <p class="col-sm-12">Here is a working list of our data sources:</p>
+          <ul >
+            <li>Aerial imagery for Albuquerque <a href="https://earth.google.com/web/@0,0,0a,22251752.77375655d,35y,0h,0t,0r" target="_blank">[Google Earth]</a></li>
+            <li>Demographic (population) and economic (MHI, GDP) data <a href="https://www.census.gov/data.html" target="_blank">[US Census Bureau]</a></li>
+            <li>City limits, police beats, and police incidents data <a href="https://opendata.cabq.gov/dataset/city-limits/resource/caabe2a0-a585-4bef-b68d-4743c17fb21c" target="_blank">[City of Albuquerque OpenData]</a></li>
+            <li>Bike trails, parks, open spaces, trails, historic places, transit routes and stops <a href="https://github.com/ABQOpenData/ABQGeoJSON" target="_blank">[ABQGeoJSON]</a></li>
+            <li>Neighborhoods, contours, land use, streets, and zoning <a href="https://www.cabq.gov/gis/geographic-information-systems-data" target="_blank">[City of Albuquerque GIS data]</a></li>
+            <li>Water cover data from 2010 <a href="https://catalog.data.gov/dataset/2010-bernalillo-county-nm-current-area-hydrography" target="_blank">[data.gov]</a></li>
+            <li>Tree canopy cover from 2016 <a href="https://www.nmconservation.org/field-notes/2018/11/8/seeing-the-city-for-the-trees-albuquerques-urban-forest" target="_blank">[The Nature Conservancy]</a></li>
+          </ul>
+
+          <h4 class="col-sm-12">Data processing and conversion steps</h4>
+          <p class="col-sm-12">
+            The heatmap and tree canopy GeoTIFF files (.tif) needed the extra pre-processing step of using GDAL's 
+              <a href="https://gdal.org/programs/gdal_polygonize.html" target="_blank">gdal_polygonize()</a> method in Python before exporting the shapefiles to GeoJSON using QGIS.
+            Specifically, I used the method like this: <br>
+            <code class="col-sm-12 prettify lang-python">
+              gdal_polygonize.py -8 your_tifs_name.tif -f "ESRI Shapefile" output_name.shp
+            </code>
+          </p>
+          <p class="col-sm-12">All shapefiles (.shp) and zipped Keyhole Markup Language files (.kmz) were converted to JSON format using QGIS with the help of 
+            <a href="https://gist.github.com/YKCzoli/b7f5ff0e0f641faba0f47fa5d16c4d8d" target="_blank">this</a> tutorial.
+          </p>
+          <p class="col-sm-12">To correctly format GeoJSON files for use as JSON files, we made use of the <a href="https://jsonformatter.org/" target="_blank">{JSON formatter}</a> tool.</p>
+
+          <h4 class="col-sm-12">Code references</h4>
+          <ul >
+            <li>Leaflet <a href="https://leafletjs.com/" target="_blank">[link]</a></li>
+            <li>Bootstrap navbar <a href="https://getbootstrap.com/docs/4.6/components/navbar/" target="_blank">[link]</a></li>
+            <li>easyPrint <a href="https://github.com/rowanwins/leaflet-easyPrint" target="_blank">[GitHub]</a></li>
+            <li>leaflet-splitmap <a href="https://github.com/QuantStack/leaflet-splitmap" target="_blank">[GitHub]</a></li>
+            <li>leaflet-ruler <a href="https://github.com/gokertanrisever/leaflet-ruler" target="_blank">[GitHub]</a></li>
+            <li>Prettify for formatting code cells in HTML <a href="https://github.com/googlearchive/code-prettify" target="_blank">[GitHub]</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

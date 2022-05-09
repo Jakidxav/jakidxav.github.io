@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>abqMaps</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- stylesheets -->
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="docs/images/favicon.ico"
+    />
+    <link rel="stylesheet" href="../css/leaflet_1.7.1.css" />
+    <link rel="stylesheet" href="../css/bootstrap_4.6.1.min.css" />
+    <link rel="stylesheet" href="../css/stylesheet.css" />
+    <link rel="stylesheet" href="../css/leaflet_ruler.css" />
+
+    <!-- scripts -->
+    <script src="../scripts/jquery_3.5.1.slim.min.js"></script>
+    <script src="../scripts/popper_1.16.1.min.js"></script>
+    <script src="../scripts/bootstrap_4.6.1.bundle.min.js"></script>
+    <script src="../scripts/leaflet_1.7.1.js" ></script>
+    <!-- Easy Print plugin for Leaflet: https://github.com/rowanwins/leaflet-easyPrint -->
+    <script src="../scripts/easyPrint.js"></script>
+    <!-- ruler plugin for Leaflet: https://github.com/gokertanrisever/leaflet-ruler -->
+    <script src="../scripts/leafletRuler.js"></script>
+    <script>
+      $(document).ready(function(){
+        $(".toggle").click(function(){
+          $(".toggle-hide").toggle(speed="slow");
+        });
+      });
+      </script>
+    <!-- personal map javascript file -->
+    <script src="../scripts/map_overlay.js"></script>
+    
+
+    <!-- data imports -->
+    <script src="../data/abq_city_limits.js"></script>
+    <script src="../data/bike_trails.js"></script>
+    <script src="../data/city_parks.js"></script>
+    <script src="../data/open_spaces.js"></script>
+    <script src="../data/city_trails.js"></script>
+    <script src="../data/historic_places.js"></script>
+    <script src="../data/apd_beats.js"></script>
+    <script src="../data/police_incidents.js"></script>
+    <!-- <script src="../data/land_use.js"></script> -->
+    <script src="../data/neighborhoods.js"></script>
+   <!-- <script src="../data/streets_data.js"></script> -->
+    <script src="../data/zip_codes.js"></script>
+    <script src="../data/transit_routes.js"></script>
+    <script src="../data/transit_stops.js"></script>
+    <script src="../data/water_cover.js"></script>
+    <script src="../data/landfill_data.js"></script>
+    <!-- <script src="../data/ido_zoning.js"></script> -->
+    <script src="../data/heatmap_afternoon.js"></script>
+    <script src="../data/heatmap_morning.js"></script>
+  </head>
+
+  <body>
+    <!-- example from https://getbootstrap.com/docs/5.0/components/navbar/ -->
+    <nav class="container navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link" aria-current="page" href="index.html">Home</a>
+            <a class="nav-link active" href="#">Overlay Map</a>
+            <a class="nav-link" href="map_slider.html">Map Slider</a>
+            <a class="nav-link" href="map_split.html">Split Map</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div id="page_title" class="container">
+      <div class="row">
+        <h3 class="col-sm-12">About the Overlay Map</h3>
+        <p class="col-sm-12">
+          This overlay map is meant to be a data aggregator for Albuquerque, New Mexico and the surrounding region.
+          We hope that this site can serve as a communal resource for data, 
+          but also as a place where people can make maps and explore different datasets. We 
+          think that spatial questions are better answered when paired with a visual component.
+        </p>
+
+        <p class="col-sm-12">
+          Our goal is to host as many open-source datasets in JSON format as possible (converting from GeoTIFF, KMZ, SHP, etc).
+          If you have more data that you would like to contribute to this map, please feel free to reach out! We plan
+          to add more data so that people can use this site to visualize and download relevant data in JSON format.
+        </p>
+
+        <h3 class="col-sm-12 toggle">How to use the Overlay Map (toggle)</h3>
+      </div>
+
+      <div class="row explainer-div toggle-hide">
+        <p class="col-sm-12">- Click and drag in the map to pan your view. Use the <b>+/-</b> buttons to zoom the view in or out.</p>
+
+        <p class="col-sm-12">
+          - To add data layers or change the basemap, click the <img src="../media/layers.svg"> icon in the upper right of the map to open the popup menu.
+          On the popup menu you can select the layers you want to add to the map or use the radio buttons to change the basemap.
+        </p>
+
+        <p class="col-sm-12">- Click the <img src="../media/icon.png"> icon to measure distances between places. This feature measures <b>total</b> distance,
+        so adding more than two points to the map will show you their combined distance. Please note: to end a current distance calculation, you will need to
+        double-click on the last point that you want measured. You can then start another distance caluclation on the same map or clear the map of all calculations
+        by again clicking the <img src="../media/icon.png"> icon</p>
+
+        <p class="col-sm-12">
+          - Click the <img src="../media/download.svg"> icon to download a .png file of the map you have created.
+          <b>Please note:</b> if you are using the <i>Police Incidents</i> point data, the download feature is currently slow to the
+          point of now working.</p>
+      </div>
+
+    <div class="container">
+      <div class="row">
+        <div id="map_overlay_container" class="map-container col-sm-12"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

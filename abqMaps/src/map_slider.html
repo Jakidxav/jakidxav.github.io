@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>abqMaps</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- stylesheets -->
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="docs/images/favicon.ico"
+    />
+    <link rel="stylesheet" href="../css/leaflet_1.7.1.css" />
+    <link rel="stylesheet" href="../css/bootstrap_4.6.1.min.css" />
+    <link rel="stylesheet" href="../css/stylesheet.css" />
+    <link rel="stylesheet" href="../css/leaflet_ruler.css" />
+
+    <!-- scripts -->
+    <script src="../scripts/jquery_3.5.1.slim.min.js"></script>
+    <script src="../scripts/popper_1.16.1.min.js"></script>
+    <script src="../scripts/bootstrap_4.6.1.bundle.min.js"></script>
+    <script src="../scripts/leaflet_1.7.1.js" ></script>
+    <!-- Easy Print plugin for Leaflet: https://github.com/rowanwins/leaflet-easyPrint -->
+    <script src="../scripts/easyPrint.js"></script>
+    <!-- ruler plugin for Leaflet: https://github.com/gokertanrisever/leaflet-ruler -->
+    <script src="../scripts/leafletRuler.js"></script>
+
+    <script>
+      $(document).ready(function(){
+        $(".toggle").click(function(){
+          $(".toggle-hide").toggle(speed="slow");
+        });
+      });
+      </script>
+    <!-- personal map javascript file -->
+    <script src="../scripts/map_slider.js"></script>
+  </head>
+
+  <body>
+    <!-- example from https://getbootstrap.com/docs/5.0/components/navbar/ -->
+    <nav class="container navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link" aria-current="page" href="index.html">Home</a>
+            <a class="nav-link" href="map_overlay.html">Overlay Map</a>
+            <a class="nav-link active" href="#">Map Slider</a>
+            <a class="nav-link" href="map_split.html">Split Map</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div id="page_title" class="container">
+      <div class="row">
+        <h3 class="col-sm-12">About the Slider Map</h3>
+        <p class="col-sm-12">This slider map allows you to view historical imagery of Albuquerque alongside changes in population, 
+          median household income, and Rio Grande discharge rates from 1990 to 2020.</p>
+        <h3 class="col-sm-12 toggle">How to use the Slider Map (toggle)</h3>
+      </div>
+      <div class="row explainer-div toggle-hide">
+        <p class="col-sm-12">- Click and drag in the map to pan your view. Use the <b>+/-</b> buttons to zoom the view in or out.</p>
+        <p class="col-sm-12">- Click the <img src="../media/download.svg"> icon to download a .png file of the map you have created.</p>
+        <p class="col-sm-12">- Click the <img src="../media/icon.png"> icon to measure distances between places. This feature measures <b>total</b> distance,
+          so adding more than two points to the map will show you their combined distance. Please note: to end a current distance calculation, you will need to
+          double-click on the last point that you want measured. You can then start another distance caluclation on the same map or clear the map of all calculations
+          by again clicking the <img src="../media/icon.png"> icon</p>
+
+          <p class="col-sm-12">- Use the slider on the bottom of the map to change the year of displayed imagery and data.</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div id="map_slider_container" class="map-container col-sm-12"></div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="slidecontainer col-sm-12 col-lg-8 offset-lg-2">
+          <table>
+            <tr>
+              <th colspan="2">Albuquerque Changes Through Time</th>
+            </tr>
+            <tr>
+              <td id="yearDisplay"></td>
+              <td id="yearDisplayValue"></td>
+            </tr>
+            <tr>
+              <td id="popDisplay"></td>
+              <td id="popDisplayValue"></td>
+            </tr>
+            <tr>
+              <td id="mhiDisplay"></td>
+              <td id="mhiDisplayValue"></td>
+            </tr>
+            <tr>
+              <td id="dischargeDisplay"></td>
+              <td id="dischargeDisplayValue"></td>
+            </tr>
+          </table>
+          <input class="slider" id="backgroundImageSlider" type="range" min="1990" max="2020" value="1990" step="10">
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

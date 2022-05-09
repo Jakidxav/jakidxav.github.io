@@ -9,6 +9,7 @@ h1, p, .navbar {
 #bootstrap_carousel {
   margin-top: 2%;
   margin-bottom: 4%;
+  display: none;
 }
 
 #map_container {

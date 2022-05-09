@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>abqMaps</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- stylesheets -->
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="docs/images/favicon.ico"
+    />
+    <link rel="stylesheet" href="../css/leaflet_1.7.1.css" />
+    <link rel="stylesheet" href="../css/bootstrap_4.6.1.min.css" />
+    <link rel="stylesheet" href="../css/stylesheet.css" />
+    <link rel="stylesheet" href="../css/leaflet_ruler.css" />
+
+    <!-- scripts -->
+    <script src="../scripts/jquery_3.5.1.slim.min.js"></script>
+    <script src="../scripts/popper_1.16.1.min.js"></script>
+    <script src="../scripts/bootstrap_4.6.1.bundle.min.js"></script>
+    <script src="../scripts/leaflet_1.7.1.js" ></script>
+    <!-- Easy Print for Leaflet: https://github.com/rowanwins/leaflet-easyPrint -->
+    <script src="../scripts/easyPrint.js"></script>
+    <!-- Splitmap plugin for Leaflet: https://github.com/QuantStack/leaflet-splitmap -->
+    <script src="../scripts/leafletSplitMap.js"></script>
+    <!-- ruler plugin for Leaflet: https://github.com/gokertanrisever/leaflet-ruler -->
+    <script src="../scripts/leafletRuler.js"></script>
+
+    <script>
+      $(document).ready(function(){
+        $(".toggle").click(function(){
+          $(".toggle-hide").toggle(speed="slow");
+        });
+      });
+      </script>
+    <!-- personal map javascript file -->
+    <script src="../scripts/map_split.js"></script>
+    <script src="../scripts/imageComparison.js"></script>
+  </head>
+
+  <body>
+    <!-- example from https://getbootstrap.com/docs/5.0/components/navbar/ -->
+    <nav class="container navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link" aria-current="page" href="index.html">Home</a>
+            <a class="nav-link" href="map_overlay.html">Overlay Map</a>
+            <a class="nav-link" href="map_slider.html">Map Slider</a>
+            <a class="nav-link active" href="#">Split Map</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div id="page_title" class="container">
+      <div class="row">
+        <h3 class="col-sm-12">About the Split Maps</h3>
+        <p class="col-sm-12">This split map allows you to compare basemaps and satellite imagery.</p>
+        <h3 class="col-sm-12 toggle">How to use the Split Map (toggle)</h3>
+      </div>
+      <div class="row explainer-div toggle-hide">
+        <p class="col-sm-12">
+          These maps allow you to compare two basemaps to each other. Use the slider located in the center of the map to switch from one basemap to the next.</p>
+          <p class="col-sm-12">- Click and drag in the map to pan your view. Use the <b>+/-</b> buttons to zoom the view in or out.</p>
+          
+          <p class="col-sm-12">- Click the <img src="../media/icon.png"> icon to measure distances between places. This feature measures <b>total</b> distance,
+            so adding more than two points to the map will show you their combined distance. Please note: to end a current distance calculation, you will need to
+            double-click on the last point that you want measured. You can then start another distance caluclation on the same map or clear the map of all calculations
+            by again clicking the <img src="../media/icon.png"> icon</p>
+
+            <p class="col-sm-12">- Click the <img src="../media/download.svg"> icon to download a .png file of the map you have created.</p>
+          
+          <p class="col-sm-12"></p>This slider map compares a streets basemap with a satellite image basemap.</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <!-- map slider div -->
+        <div id="map_slider_container" class="map-container col-sm-12"></div>
+        <p class="col-sm-12"> This slider map compares satellite imagery of Albuquerque from 1985 and 2020.</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <!-- image slider div -->
+        <!-- https://www.w3schools.com/howto/howto_js_image_comparison.asp -->
+        <div class="img-comp-container col-sm-12">
+          <div class="img-comp-img">
+            <img src="../media/ABQ_1985_GE.jpg" />
+          </div>
+          <div class="img-comp-img img-comp-overlay">
+            <img src="../media/ABQ_2020_GE.jpg" />
+          </div>
+          
+        </div>
+      </div>
+    </div>
+    <script>
+      initComparisons();
+    </script>
+  </body>
+</html>
